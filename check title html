@@ -1,0 +1,25 @@
+check.py
+-------------------------------------------------------------------------------------------------
+from bs4 import BeautifulSoup
+import urllib.request
+import os
+import sys
+url = sys.argv[1]
+data = urllib.request.urlopen(url).read()
+soup = BeautifulSoup(data)
+print(soup.title.string)
+with open('/var/www/htmlbk/'url'+'+'backup'+'.html', 'w', encoding='utf-8') as f:
+  f.write(soup.title.string)
+print("finished")
+
+------------------------------------------------------------------------------------------------
+<form method="post" action="<?php echo $PHP_SELF;?>"> 
+website:<input type="text" size="16" maxlength="100" name="url"><br /> 
+<input type="submit" value="submit" name="submit">
+</form>
+<?php 
+$url = $_POST["url"];
+echo($url);
+$result = shell_exec("python3 /var/www/html/check.py " . $url);
+echo ("result = ".$result);
+?>
