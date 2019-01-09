@@ -8,7 +8,7 @@ url = sys.argv[1]
 data = urllib.request.urlopen(url).read()
 soup = BeautifulSoup(data)
 print(soup.title.string)
-with open('/var/www/htmlbk/'url'+'+'backup'+'.html', 'w', encoding='utf-8') as f:
+with open('/var/www/html/url+'.txt', 'w') as f:
   f.write(soup.title.string)
 print("finished")
 
